@@ -6,7 +6,7 @@
 import scrapy
 
 
-class MpUdScrapperItem(scrapy.Item):
+class MpUdScraperItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     full_name = scrapy.Field()

@@ -8,6 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class MpUdScrapperPipeline:
+class MpUdScraperPipeline:
     def process_item(self, item, spider):
         return item

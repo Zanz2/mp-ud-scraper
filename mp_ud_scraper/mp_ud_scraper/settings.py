@@ -1,4 +1,4 @@
-# Scrapy settings for mp_ud_scrapper project
+# Scrapy settings for mp_ud_scraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,14 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "mp_ud_scrapper"
+BOT_NAME = "mp_ud_scraper"
 
-SPIDER_MODULES = ["mp_ud_scrapper.spiders"]
-NEWSPIDER_MODULE = "mp_ud_scrapper.spiders"
+SPIDER_MODULES = ["mp_ud_scraper.spiders"]
+NEWSPIDER_MODULE = "mp_ud_scraper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "mp_ud_scrapper (+http://www.yourdomain.com)"
+#USER_AGENT = "mp_ud_scraper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -45,13 +45,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "mp_ud_scrapper.middlewares.MpUdScrapperSpiderMiddleware": 543,
+#    "mp_ud_scraper.middlewares.MpUdScraperSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "mp_ud_scrapper.middlewares.MpUdScrapperDownloaderMiddleware": 543,
+#    "mp_ud_scraper.middlewares.MpUdScraperDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -63,7 +63,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "mp_ud_scrapper.pipelines.MpUdScrapperPipeline": 300,
+#    "mp_ud_scraper.pipelines.MpUdScraperPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

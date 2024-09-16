@@ -1,6 +1,6 @@
 import scrapy
-from mp_ud_scrapper.items import MpUdScrapperItem
-from mp_ud_scrapper.settings import SPLASH_REQ_ARGS
+from mp_ud_scraper.items import MpUdScraperItem
+from mp_ud_scraper.settings import SPLASH_REQ_ARGS
 from scrapy_splash import SplashRequest
 
 class MainSpider(scrapy.Spider):
@@ -23,7 +23,7 @@ class MainSpider(scrapy.Spider):
             
             "fill the data array hier with the case"
             
-            item = MpUdScrapperItem()
+            item = MpUdScraperItem()
             item["full_name"] = data
             item["missing_unidentified_since_time_date"] = data
             item["country_reported"] = data
