@@ -11,6 +11,7 @@ class MpUdScraperItem(scrapy.Item):
     # name = scrapy.Field()
     case_full_name = scrapy.Field()
     case_missing_unidentified_since_time_date = scrapy.Field()
+    case_age = scrapy.Field()
     case_country_reported = scrapy.Field()
     case_area = scrapy.Field()
     case_text = scrapy.Field()
