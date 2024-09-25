@@ -1,7 +1,6 @@
 import scrapy
 from mp_ud_scraper.items import MpUdScraperItem
 from datetime import datetime
-from dateutil import parser
 import time
 import asyncio
 import logging 
@@ -11,17 +10,20 @@ logging.basicConfig(level=logging.WARNING)  # You can set to DEBUG, INFO, WARNIN
 logger1 = logging.getLogger('scrapy-playwright') 
 logger1.setLevel(logging.WARNING)
 
+logging.basicConfig(level=logging.WARNING)  # You can set to DEBUG, INFO, WARNING, etc.
+logger1 = logging.getLogger('scrapy') 
+logger1.setLevel(logging.WARNING)
 
 zaginieni_matching_dict = { 
     "get_all_cases": (lambda scrapy_response: scrapy_response.css("div.content div.search_result_list div.item_wrap")),
     "get_the_next_page": (lambda scrapy_response: scrapy_response.css("p.search_result_pagination a.active[href] + a").attrib["href"].strip()),
     
     "case_full_name": (lambda case_css: case_css.css("span.info span.title::text").get().strip()),
-    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime(str(parser.parse(case_css.css("span.info span.date::text").get().strip(), fuzzy=True))[:10], '%Y-%m-%d').strftime('%d/%m/%Y')),
+    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime(case_css.css("span.info span.date::text").get().strip().split(" ")[3], '%Y/%m/%d').strftime('%d/%m/%Y')),
     "case_age": (lambda case_css: case_css.css("span.info span.age::text").get().strip().lower().replace("years old","")),
     "case_area": (lambda case_css: case_css.css("span.info span.place strong::text").get().strip().lower().replace("last seen","").replace("poza granicami polski", "outside poland")),
     "case_country_reported": (lambda case_css: "Poland" ),
-    "case_text": (lambda case_css: "|".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall()])), # to skip empty strings add --> if text_entry.split()
+    "case_text": (lambda case_css: " | ".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""])),
     "case_link": (lambda case_css: case_css.css("a[href]").attrib["href"].strip()),
 }
 
@@ -65,6 +67,7 @@ class ZaginieniSpider(scrapy.Spider):
         url_attributes = self.matching_dict[self.match_paginated_url_to_original(response.url)]
         
         while True:
+            print(f"Current page: {response.css('p.search_result_pagination a.active[href]::text').get().strip()}")
             cases = url_attributes["get_all_cases"](response)
             for case in cases:
         
