@@ -107,14 +107,8 @@ AUTOTHROTTLE_START_DELAY = 5
 AUTOTHROTTLE_MAX_DELAY = 60
 AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
-# scrapy stuff:
-SPLASH_URL = 'http://localhost:8050'
-
-SPLASH_REQ_ARGS = {'wait': 0.5, 'timeout': 90}
 
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
 }
 
@@ -124,15 +118,12 @@ DOWNLOAD_HANDLERS = {
     "https": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
 }
 
-SPIDER_MIDDLEWARES = {
-    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
-}
 
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+DUPEFILTER_CLASS = 'scrapy.dupefilters.RFPDupeFilter'
 
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
-    "timeout": 40 * 1000,  # 20 seconds
+    "timeout": 5 * 1000,  # 10 seconds
 }
 
 # Set settings whose default value is deprecated to a future-proof value
