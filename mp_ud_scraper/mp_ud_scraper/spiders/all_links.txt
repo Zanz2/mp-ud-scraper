@@ -1,25 +1,93 @@
-https://www.politie.nl/gezocht-en-vermist/vermiste-volwassenen?page=1
-https://www.politie.nl/gezocht-en-vermist/vermiste-kinderen
-https://www.politie.be/opsporingen/nl/opsporingen/vermiste-personen
-https://www.interpol.int/en/How-we-work/Notices/Yellow-Notices/View-Yellow-Notices
-https://www.doenetwork.org/mp-geo-euro-males.php
-https://www.doenetwork.org/mp-geo-euro-females.php
-https://www.zaginieni.pl/missing-people-database/see-missing-people-database/
-https://www.missingpeople.org.uk/appeal-search
-https://www.garda.ie/en/missing-persons/
-https://www.ie.missingkids.com/
-https://www.fbi.gov/wanted/kidnap
-https://www.fbi.gov/wanted/vicap/missing-persons
-https://www.namus.gov/dashboard?nocache=
-https://www.missingpersonscenter.org/
-https://www.missingpersons.gov.au/view-all-profiles
-https://www.police.govt.nz/missing-persons/missing-persons-list
-https://www.oic.icmp.int/index.php?w=myface&s=search&l=en&page_curr=0&page_prev=0&page_next=0&disapp_country_id=2178&birth_country_id=0&ageFrom=&ageTo=&gender_id=0&dtDisappDateFrom=&dtDisappDateTo=&btn_submit=
-https://www.wikipedia.org/wiki/List_of_people_who_disappeared_mysteriously:_1990%E2%80%93present
- 
-https://www.politie.nl/gezocht-en-vermist/niet-geidentificeerde-personen?page=1
-https://www.interpol.int/How-we-work/Notices/Operation-Identify-Me
-https://www.missingpersons.police.uk/en-gb/case-search/?page=1&orderBy=dateDesc
-https://www.namus.gov/dashboard?nocache=
-https://www.fbi.gov/wanted/vicap/unidentified-persons
- 
+# These sites could be considered to integrate into the scripts
+
+# Looks doable in a day
+
+https://www.oesterreichfindeteuch.at/vermisste-personen/ # (native, all one page like wikipedia) Austrian organisation, missing people
+https://www.missing-people.dk/index.php/savnede-personer/ # (native, all one page like wikipedia) Danish organisation
+http://nl.globalmissingkids.org/ # (native), only 5 cases, all more than 10 years old Dutch amber missing persons organisation
+https://www.116000enfantsdisparus.fr/avis-de-recherche/ # (native, seems like all one page like wikipedia) Missing persons French organisation
+https://cndes-web.ses.mir.es/publico/Desaparecidos/ # (native, but didnt actually see the site) Spanish missing persons but loads too slow
+https://www.missingpeople.se/efterlysningar/ # (native) Swedish missing persons site, missing date on "cards"
+https://www.police.be.ch/de/start/themen/news/fahndung.html # (native, all 1 page, titles seem to follow a structure) Swiss police, multiple categories on one page
+https://childfocus.be/fr-be/Disparitions/Toutes-les-disparitions # (native, belgian site)
+https://www.penelopeitalia.org/archivio-scomparsi/ # (native, italian site)
+https://find.globalmissingkids.org/ # (native)
+https://sosdesaparecidos.es/desaparecidos/ # (native) spanish missing people
+https://www.services.rcmp-grc.gc.ca/missing-disparus/search-recherche.jsf?lang=en # (native) canada missing people
+
+
+# Hard (1-3 days per site)
+
+
+https://www.politiaromana.ro/ro/copii-disparuti # (complex, deep parse) bulgarian police missing kids
+https://www.politiaromana.ro/ro/persoane-disparute # same as above but adults
+https://www.bmi.gv.at/fahndung/start.aspx?fndgb=ABG_UEBER_20&fndgm=1 # (complex, deep parse) Austrian police missing adults
+https://www.bmi.gv.at/fahndung/start.aspx?fndgb=ABG_UNTER_20&fndgm=1 # (complex, deep parse) Austrian police missing kids
+https://www.bmi.gv.at/fahndung/start.aspx?fndgb=UNBEK_LEICHEN&fndgm=1 # (complex, deep parse) Austrian police unidentified bodies, i didnt open this but im 100% it uses the same structure
+https://nestali.gov.hr/default.aspx # (complex, deep parse, even though landing page looks doable), Croatian police missing persons
+https://aplikace.policie.cz/patrani-osoby/Vyhledavani.aspx # (complex, deep parse, you need to specify in the search that its missing persons and male) Czech police missing persons
+https://aplikace.policie.cz/patrani-osoby/Vyhledavani.aspx # (complex, deep parse, you need to specify in the search that its missing persons and female) Czech police missing persons
+https://www.arpd.fr/fr/recherche-disparition?search_api_fulltext= # (seems native, but is actually complex, the data on the cases is not structured at all and the case links contain an image that would need to be OCR'd)
+https://www.bka.de/SiteGlobals/Forms/Suche/Fahndungsliste_VermisstesKind_Formular.html?nn=206246 # (complex, deep parse) Missing kids german
+https://www.bka.de/SiteGlobals/Forms/Suche/Fahndungsliste_Vermisste_Formular.html?nn=206246 # (complex, deep parse) missing persons german, these two sites are a bit broken
+https://polizei.nrw/fahndungen # (complex, deep parse) German police search trough all cases, need to specify in search "missing" and "unknown dead"
+https://www.hamogelo.gr/gr/el/eksafanismena-paidia:missing-alert-hellas/ # (complex, all one one page but with a weird moving js banner) Greek missing kids
+http://www.lifelinehellas.gr/category/%ce%b5%ce%be%ce%b1%cf%86%ce%b1%ce%bd%ce%b9%cf%83%ce%b8%ce%ad%ce%bd%cf%84%ce%b5%cf%82/ # (complex deep parse, possibly OCR) Greek missing persons
+https://anikolouli.gr/category/%ce%b1%ce%b3%ce%bd%ce%bf%ce%bf%cf%8d%ce%bd%cf%84%ce%b1%ce%b9/xamogelo-tou-paidiou/ # (complex deep parse, OCR), Greek missing kids
+https://anikolouli.gr/category/%ce%b1%ce%b3%ce%bd%ce%bf%ce%bf%cf%8d%ce%bd%cf%84%ce%b1%ce%b9/missing-alert/ # (complex deep parse, OCR), Greek missing people
+https://www.police.hu/hu/koral/eltunt-szemelyek # (complex deep parse), Hungarian police missing people
+https://zaginieni.policja.gov.pl/zag/form/7,Zaginieni.html # (complex, deep parse) Polish police website, missing people, data is a bit unstructured inside but getting DoD date should be doable
+https://www.policiajudiciaria.pt/pessoas-desaparecidas/ # (complex, deep parse) Portuguese website of missing persons
+https://www.policiajudiciaria.pt/identificacao-cadaveres/ # (complex, deep parse) Portuguese website of unidentified bodies
+https://www.forsvunnapersoner.com/ # (complex, deep parse) Swedish site for missing people, looks like super old data though
+https://www.missingpersons.gov.au/search # (complex, deep parse) Australian government website
+https://www.argentina.gob.ar/seguridad/personasextraviadas # (complex, deep parse) Argentinian missing person government website
+https://www.interpol.int/en/How-we-work/Notices/Yellow-Notices/View-Yellow-Notices # (complex, deep parse)
+https://www.missingpeople.org.uk/appeal-search # (complex, deep parse)
+https://www.fbi.gov/wanted/kidnap # (complex, deep parse) javascript, pages autoload
+https://www.fbi.gov/wanted/vicap/unidentified-persons # (complex, deep parse) javascript, pages autoload
+https://www.fbi.gov/wanted/vicap/missing-persons # (complex, deep parse) javascript, pages autoload with also a button to load them
+https://missingpersonscenter.org/latest-updates/ # (complex, deep parse) this site and pagination runs on javascript
+https://www.missingpersons.gov.au/view-all-profiles # (complex, deep parse) no info on cards, website blank on first load, needed refresh
+https://www.missingpersons.police.uk/en-gb/case-search/?page=1&orderBy=dateDesc # (complex, deep parse) no info on cards, needs deep parsing
+https://www.namus.gov/MissingPersons/Search#/results # (complex, deep parse) this and the 2 below are all a running on javascript and a bit different, so you cant just use 1 dict
+https://www.namus.gov/UnidentifiedPersons/Search#/results
+https://www.namus.gov/UnclaimedPersons/Search#/results
+
+
+# Very hard data (Would probably need to use AI or external library tuned for this use case)
+
+https://www.labanof.unimi.it/Cadaveri%20senza%20nome.html # italian unidentified bodies
+https://unbekannte-leichen.blogspot.com/2019/10/2011-bis-2019.html?zx=2373efa9501ea8aa # blog style with dead bodies, IMO unusable and a bit unsettling
+https://grapevine.is/tag/missing-person/ # Iceland, but entries are like unstructured blog posts
+https://duwirstvermisst.de/ # Its a forum with blog style posts, super unstructed
+http://www.chilhavisto.rai.it/dl/clv/Li_riconoscete/PublishingBlock-0b1c2c2e-e3ca-4882-9c37-1878501a165d-0.html # (very complex, deep parse, unstructured data), italian site, can you identify people that have no memory / name
+http://www.chilhavisto.rai.it/dl/clv/Corpi_senza_nome/PublishingBlock-6266e323-4d48-4fc9-868d-45920a9a9d76-0.html # same as above unidentified bodies
+http://www.chilhavisto.rai.it/dl/clv/Bambini_scomparsi/PublishingBlock-3e5ccddd-99cc-4a75-bdc0-1110f1316a62-0.html # same as above missing kids
+http://www.chilhavisto.rai.it/dl/clv/Scomparsi/PublishingBlock-acac2ac7-e10c-436f-85df-52f5ccc87d1d-0.html # same as above missing adults
+https://www.safecommunitiesportugal.com/missing-persons/ # completely unstructured entries
+https://polizeiticker.ch/vermisst # completely unstructured data (swiss site)
+
+
+# Not working (no cases, connection issues, empty page, "blog" style articles, page doesnt exist):
+
+https://www.politie.be/opsporingen/nl/opsporingen/gezocht/overleden-personen # seems like they currently have 0 cases
+https://www.cypruspolicenews.com/missing-persons # 0 cases
+http://katrinalert.org/en/ # fatal wp error
+https://www.fredi.org/ # broken site
+https://www.police-nationale.interieur.gouv.fr/Actualites/L-actu-police/Disparition-inquietante-de-personne-mineure # 404
+https://www.ie.missingkids.com/ # website cannot be reached DNS error
+https://www.oic.icmp.int/index.php # website cannot be reached DNS error
+https://www.interpol.int/How-we-work/Notices/Operation-Identify-Me # website currently unavailable internal error
+http://judiciaire.gendarmerie.interieur.gouv.fr/judiciaire/identification_cadavres/cadretexte.html # DNS error
+https://www.bka.de/SiteGlobals/Forms/Suche/Fahndungsliste_Personenfahndung_Formular.html?nn=4210&cl2Categories_Art=unbekannte_tote&activeTab=1 # empty page
+http://poszukiwania.policja.waw.pl/pz/identyfikacja-zwlok # site cannot be reached
+https://kin-search.ru/?lang=en # 404 site doesnt exist
+http://spurlos.ch/vermisste/ # site doesnt work DNS error
+https://disparitions.skyrock.com/ # dns error
+https://www.amberalert.eu/amber-alert-in-your-country # no cases, it is meant to inform of alerts, not provide an overview i think
+https://www.lbth.org/ # instantly blocked by cloudfare, changing ip didnt help
+
+http://br.missingkids.com/missingkids/servlet/PublicHomeServlet # either empty result or says that the system is still processing my request via clientside js
+http://gr.missingkids.com/missingkids/servlet/PublicHomeServlet # same site as above (but for greece)
+

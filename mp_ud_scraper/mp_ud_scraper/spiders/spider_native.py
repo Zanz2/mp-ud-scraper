@@ -42,7 +42,7 @@ doe_network_matching_dict = {
     "case_area": (lambda case_css: "Area abbrev.: " + case_css.css("*::text").getall()[0].strip()[-3:]),
     "case_country_reported": (lambda case_css: "See link" ),
     "case_text": (lambda case_css: " | ".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""])), 
-    "case_link": (lambda case_css: case_css.css("a[href]").attrib["href"].strip()),
+    "case_link": (lambda case_css: case_css.css("a[href]").attrib["href"].strip() if "http" in case_css.css("a[href]").attrib["href"].strip() or "www" in case_css.css("a[href]").attrib["href"].strip() else "http://www.doenetwork.org" + case_css.css("a[href]").attrib["href"].strip()),
 }
 
 garda_matching_dict = {
@@ -117,13 +117,21 @@ class NativeSpider(scrapy.Spider):
             "https://www.doenetwork.org/mp-geo-canada-females.php": doe_network_matching_dict, # no pages
             "https://www.doenetwork.org/mp-geo-us-males.php": doe_network_matching_dict, # no pages
             "https://www.doenetwork.org/mp-geo-us-females.php": doe_network_matching_dict, # no pages
+            "https://www.doenetwork.org/cases/software/uid-geo-us-males.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-us-females.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-canada-males.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-canada-females.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/uid-geo-mexico-males.php": doe_network_matching_dict,
+            "https://www.doenetwork.org/uid-geo-mexico-females.php": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-euro-males.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-euro-females.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-aus-males.html": doe_network_matching_dict,
+            "https://www.doenetwork.org/cases/software/uid-geo-aus-females.html": doe_network_matching_dict,
+             
             "https://www.garda.ie/en/missing-persons/": garda_matching_dict,
-            #"https://www.ie.missingkids.com/" # website cannot be reached DNS error
             "https://www.police.govt.nz/missing-persons/missing-persons-list": nz_police_matching_dict,
-            #"https://www.oic.icmp.int/index.php" # website cannot be reached DNS error
             "https://www.policija.si/eng/missing-persons?page=1": si_police_matching_dict, # Forbidden by robots.txt
             "https://en.wikipedia.org/wiki/List_of_people_who_disappeared_mysteriously:_1990%E2%80%93present": wikipedia_matching_dict,
-            #"https://www.interpol.int/How-we-work/Notices/Operation-Identify-Me" # website currently unavailable internal error
         }
 
     def start_requests(self):
