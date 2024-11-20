@@ -113,7 +113,7 @@ class ComplexSpider(scrapy.Spider):
 
     def start_requests(self):
         for url, attributes in self.matching_dict.items():
-            #if url != "https://www.missingpeople.org.uk/appeal-search": continue
+            if url != "https://www.interpol.int/en/How-we-work/Notices/Yellow-Notices/View-Yellow-Notices": continue
             yield scrapy.Request(url=url, callback=self.parse)
     
     def match_paginated_url_to_original(self, paginated_url):
