@@ -108,10 +108,6 @@ AUTOTHROTTLE_MAX_DELAY = 60
 AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
 
 
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-}
-
 # settings.py
 DOWNLOAD_HANDLERS = {
     "http": "scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler",
@@ -120,6 +116,10 @@ DOWNLOAD_HANDLERS = {
 
 
 DUPEFILTER_CLASS = 'scrapy.dupefilters.RFPDupeFilter'
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
+
 
 PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": False,
@@ -129,3 +129,5 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
+
+

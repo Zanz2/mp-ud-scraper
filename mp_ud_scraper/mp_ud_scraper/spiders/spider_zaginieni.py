@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.WARNING)  # You can set to DEBUG, INFO, WARNIN
 logger1 = logging.getLogger('scrapy') 
 logger1.setLevel(logging.WARNING)
 
-zaginieni_matching_dict = { 
+zaginieni_matching_dict = { # TODO: remove this, needlesly complex, it made sense in spider_native where its used for all the sites, not here
     "get_all_cases": (lambda scrapy_response: scrapy_response.css("div.content div.search_result_list div.item_wrap")),
     "get_the_next_page": (lambda scrapy_response: scrapy_response.css("p.search_result_pagination a.active[href] + a").attrib["href"].strip()),
     
