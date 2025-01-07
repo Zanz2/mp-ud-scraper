@@ -2,6 +2,7 @@ import scrapy
 from mp_ud_scraper.items import MpUdScraperItem
 import datetime
 import time
+from dateutil import parser
 
 class InterpolSpider(scrapy.Spider):
     name = "interpol_spider"
@@ -55,8 +56,8 @@ class InterpolSpider(scrapy.Spider):
                 name_str = "UNKNOWN"
 
             item["case_full_name"] = name_str
-
-            item["case_missing_unidentified_since_time_date"] = notice["date_of_event"]
+            
+            item["case_missing_unidentified_since_time_date"] = datetime.datetime.strptime(str(parser.parse(notice["date_of_event"], fuzzy=True))[:10], '%Y-%m-%d').strftime('%d/%m/%Y')
             try:
                 birthdate_object = datetime.datetime.strptime(notice["date_of_birth"], "%Y/%m/%d")
                 item["case_age"] = self.calculate_age(birthdate_object)
