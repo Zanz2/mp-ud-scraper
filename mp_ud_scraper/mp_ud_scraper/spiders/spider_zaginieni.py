@@ -95,7 +95,6 @@ class ZaginieniSpider(scrapy.Spider):
                     await asyncio.sleep(0.1)
                     await page.click(next_button_selector)
                     await asyncio.sleep(0.1)
-                    time.sleep(0.1)
                     await page.wait_for_load_state('networkidle')  # Wait until there are no network requests
                     await asyncio.sleep(0.1)
 

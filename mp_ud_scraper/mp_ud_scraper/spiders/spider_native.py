@@ -84,15 +84,15 @@ wikipedia_matching_dict = {
 }
 
 si_police_matching_dict = {
-    "get_all_cases": (lambda scrapy_response: scrapy_response.css("div#fav-main div.favth-row div.tiralica")),
-    "get_the_next_page": (lambda scrapy_response: scrapy_response.css("p[align] a::text:contains('»')").attrib["href"].strip()),
+    "get_all_cases": (lambda scrapy_response: scrapy_response.css("div#fav-main div.favth-row div.tiralica")),#.css('p[align="center"] a:contains("»")').get()
+    "get_the_next_page": (lambda scrapy_response: scrapy_response.css("p[align='center'] a:contains('»')").attrib["href"].strip()), # &raquo; = » symbol in html
     "case_full_name": (lambda case_css: case_css.css("*::text").getall()[0].strip()),
-    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime(case_css.css("*::text").getall()[2].strip().lower().replace("missing since", ""), '%d-%m-%Y').strftime('%d/%m/%Y')),
+    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime(case_css.css("*::text").getall()[2].lower().replace("missing since", "").strip(), '%d.%m.%Y').strftime('%d/%m/%Y')),
     "case_age": (lambda case_css: case_css.css("*::text").getall()[1].strip()),
     "case_area": (lambda case_css: "See link"),
     "case_country_reported": (lambda case_css: "Slovenia" ),
     "case_text": (lambda case_css: " | ".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""])),
-    "case_link": (lambda case_css: "https://www.policija.si/eng/missing-persons" + case_css.css("a[href]::text:contains('More')").attrib["href"].strip()),
+    "case_link": (lambda case_css: "https://www.policija.si/eng/missing-persons" + case_css.css("a:contains('More')").attrib["href"].strip()),
 }
 
 class NativeSpider(scrapy.Spider):
@@ -130,7 +130,7 @@ class NativeSpider(scrapy.Spider):
              
             "https://www.garda.ie/en/missing-persons/": garda_matching_dict,
             "https://www.police.govt.nz/missing-persons/missing-persons-list": nz_police_matching_dict,
-            "https://www.policija.si/eng/missing-persons?page=1": si_police_matching_dict, # Forbidden by robots.txt
+            "https://www.policija.si/eng/missing-persons?page=1": si_police_matching_dict, 
             "https://en.wikipedia.org/wiki/List_of_people_who_disappeared_mysteriously:_1990%E2%80%93present": wikipedia_matching_dict,
         }
 
@@ -175,7 +175,8 @@ class NativeSpider(scrapy.Spider):
         
         try:
             next_page = url_attributes["get_the_next_page"](response)
-        except:
+        except Exception as e:
+            print(e)
             print(f"Next page url not found while on {response.url}")
             next_page = None
 
