@@ -7,17 +7,6 @@ from datetime import datetime
 # Improvements that would make the links below work but require considerably more work:
 # TODO sites where list cards show less info: actually go into the card links and scrape the area and case text from there, its more robust
 
-interpol_matching_dict = {
-    "get_all_cases": (lambda scrapy_response: scrapy_response.css("div#container").css("li")),
-    "get_the_next_page": (lambda scrapy_response: scrapy_response.css("No pagination, this will and should fail")),
-    "case_full_name": (lambda case_css: case_css.css("*::text").getall()[1].strip()),
-    "case_missing_unidentified_since_time_date": (lambda case_css: case_css.css("*::text").getall()[-1].strip()),
-    "case_age": (lambda case_css: case_css.css("*::text").getall()[-2].strip()),
-    "case_area": (lambda case_css: "Area abbrev.: " + case_css.css("*::text").getall()[0].strip()[-3:]),
-    "case_country_reported": (lambda case_css: "See link" ),
-    "case_text": (lambda case_css: "|".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall()])), # to skip empty strings add --> if text_entry.split()
-    "case_link": (lambda case_css: case_css.css("a[href]").attrib["href"].strip()),
-}
 
 missingpeople_org_matching_dict = {
     "get_all_cases": (lambda scrapy_response: scrapy_response.css("div#container").css("li")),
@@ -109,6 +98,7 @@ class ComplexSpider(scrapy.Spider):
             "https://www.namus.gov/MissingPersons/Search#/results": us_nam_matching_dict, # this and the 2 below are all a running on javascript and a bit different, so you cant just use 1 dict
             "https://www.namus.gov/UnidentifiedPersons/Search#/results": us_nam_matching_dict,
             "https://www.namus.gov/UnclaimedPersons/Search#/results": us_nam_matching_dict,
+            "https://find.globalmissingkids.org/": None, # has javascript autoload
         }
 
     def start_requests(self):
