@@ -81,13 +81,14 @@ class InterpolSpider(scrapy.Spider):
 
     def parse(self, response):
 
-        #end_date = datetime.datetime.now()
-        end_date = datetime.datetime(2003, 7, 7)
+        end_date = datetime.datetime.now()
+        #end_date = datetime.datetime(2003, 7, 7) debug 
 
         while True:
             #https://ws-public.interpol.int/notices/v2/yellow?&dateOfDisapearanceFrom=2024%2F10%2F01&dateOfDisapearanceTo=2024%2F10%2F01
             url_part1 = "?resultPerPage=160&dateOfDisapearanceFrom="
-            date_part = end_date.strftime('%Y-%m-%d').replace("-","%2F")
+            from_date = (end_date - datetime.timedelta(days=8)).strftime('%Y-%m-%d').replace("-","%2F")
+            to_date = end_date.strftime('%Y-%m-%d').replace("-","%2F")
 
             url_part2 = "&dateOfDisapearanceTo="
             #next_page = https://ws-public.interpol.int/notices/v2/yellow?&dateOfDisapearanceFrom=2024%2F10%2F01&dateOfDisapearanceTo=2024%2F10%2F0
@@ -102,9 +103,9 @@ class InterpolSpider(scrapy.Spider):
                 yield scrapy.Request(next_page, callback=self.parse_entries)
                 break # Stop, every available case is parsed
             else: # iterate per day
-                next_page = self.core_api_url + url_part1 + date_part + url_part2 + date_part
+                next_page = self.core_api_url + url_part1 + from_date + url_part2 + to_date
             
             time.sleep(0.1)
             yield scrapy.Request(next_page, callback=self.parse_entries)
-            end_date -= datetime.timedelta(days=1)
+            end_date -= datetime.timedelta(days=8)
             

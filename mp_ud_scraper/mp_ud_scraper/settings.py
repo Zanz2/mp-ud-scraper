@@ -122,7 +122,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 
 PLAYWRIGHT_LAUNCH_OPTIONS = {
-    "headless": False,
+    "headless": True,
     "timeout": 5 * 1000,  # 10 seconds
 }
 

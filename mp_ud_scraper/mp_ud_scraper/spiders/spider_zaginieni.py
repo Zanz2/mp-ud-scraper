@@ -94,9 +94,11 @@ class ZaginieniSpider(scrapy.Spider):
                 try:
                     await asyncio.sleep(0.1)
                     await page.click(next_button_selector)
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(0.2)
+                    #await page.wait_for_selector("div.item_wrap")
+
                     await page.wait_for_load_state('networkidle')  # Wait until there are no network requests
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(0.01)
 
                     # Get the content of the new page
                     html_str = await page.content()
