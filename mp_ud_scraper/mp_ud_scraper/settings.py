@@ -88,13 +88,18 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 DEFAULT_REQUEST_HEADERS = {
-    'Accept-Language': 'en-US,en;q=0.9',
-    "Referer": "https://www.google.com/",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Sec-Ch-Ua": '"Not A(Brand";v="99", "Google Chrome";v="121", "Chromium";v="121"',
-    "Sec-Ch-Ua-Platform": '"Windows"',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+    "Connection": "keep-alive",
+     "Pragma": "no-cache",
+     "Cache-Control": "no-cache",
+     "sec-ch-ua": "\" Not;A Brand\";v=\"99\", \"Google Chrome\";v=\"91\", \"Chromium\";v=\"91\"",
+     "accept": "application/json",
+     "sec-ch-ua-mobile": "?0",
+     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+     "content-type": "application/x-www-form-urlencoded",
+     "Sec-Fetch-Site": "cross-site",
+     "Sec-Fetch-Mode": "cors",
+     "Sec-Fetch-Dest": "empty",
+     "Accept-Language": "en-US,en;q=0.9"
 }
 
 AUTOTHROTTLE_ENABLED = True
@@ -120,7 +125,7 @@ PLAYWRIGHT_LAUNCH_OPTIONS = {
     "headless": True,
     "timeout": 5 * 1000,  # 10 seconds
 }
-PLAYWRIGHT_BROWSER_TYPE = "chromium"  # Choose 'chromium', 'firefox', or 'webkit'
+#PLAYWRIGHT_BROWSER_TYPE = "chromium"  # Choose 'chromium', 'firefox', or 'webkit'
 
 # Set settings whose default value is deprecated to a future-proof value
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
