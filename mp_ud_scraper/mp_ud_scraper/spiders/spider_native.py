@@ -12,15 +12,15 @@ logger1.setLevel(logging.WARNING)
 # TODO add more easy to parse sites like the ones below from countries within europe?
 
 politie_nl_matching_dict = {
-    "get_all_cases": (lambda scrapy_response: scrapy_response.css("ul.imagelist li.content-gutter")),
-    "get_the_next_page": (lambda scrapy_response: scrapy_response.css("a[href][rel='next']").attrib["href"]),
-    "case_full_name": (lambda case_css: case_css.css("article h3::text").get().strip()),
-    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime(case_css.css("article time[datetime]::text").get().strip(), '%d-%m-%Y').strftime('%d/%m/%Y')),
-    "case_age": (lambda case_css: case_css.css("p.leeftijd::text").get().strip()),
+    "get_all_cases": (lambda scrapy_response: scrapy_response.css("a[data-matomo-action='Vermist bericht']")),
+    "get_the_next_page": (lambda scrapy_response: scrapy_response.url.split("page=")[0].split(".nl")[-1] + "page=" + str(int(scrapy_response.url.split("page=")[1]) + 1)),
+    "case_full_name": (lambda case_css: [ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""][0]),
+    "case_missing_unidentified_since_time_date": (lambda case_css: datetime.strptime([ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""][3], '%d-%m-%Y').strftime('%d/%m/%Y')),
+    "case_age": (lambda case_css: "Check link"),
     "case_country_reported": (lambda case_css: "Netherlands"),
-    "case_area": (lambda case_css: case_css.css("p::text").extract()[-1].strip()),
+    "case_area": (lambda case_css: [ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""][-2]),
     "case_text": (lambda case_css: " | ".join([ text_entry.strip() for text_entry in case_css.css("*::text").getall() if text_entry.strip() != ""])),
-    "case_link": (lambda case_css: "https://www.politie.nl" + case_css.css("a.imagelistlink").attrib["href"].strip()),
+    "case_link": (lambda case_css: "https://www.politie.nl" + case_css.css("a[data-matomo-action='Vermist bericht']").attrib["href"].strip()),
 }
 politie_be_matching_dict = {
     "get_all_cases": (lambda scrapy_response: scrapy_response.css("div#block-mainpagecontent div.view-content div.item-list ul div.content")),
